@@ -1,4 +1,4 @@
-/* Copyright 2018 'hecsall'
+/* Copyright 2019 'hecsall'
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -71,5 +71,9 @@ void matrix_scan_user(void) {
 }
 
 void led_set_user(uint8_t usb_led) {
-
+	if (usb_led & (1 << USB_LED_CAPS_LOCK)) {
+		DDRD |= (1 << 4); PORTD &= ~(1 << 4);
+	} else {
+		DDRD &= ~(1 << 4); PORTD &= ~(1 << 4);
+	}
 }
