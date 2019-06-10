@@ -17,3 +17,5 @@
 #pragma once
 
 // place overrides here
+#undef BACKLIGHT_LEVELS
+#define BACKLIGHT_LEVELS 5
