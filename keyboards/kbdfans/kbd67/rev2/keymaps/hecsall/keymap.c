@@ -35,10 +35,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,  KC_Q,    KC_W,   KC_E,   KC_R,   KC_T,   KC_Y,   KC_U,   KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS, KC_PSCREEN, \
   KC_CLCK, KC_A,    KC_S,   KC_D,   KC_F,   KC_G,   KC_H,   KC_J,   KC_K,    KC_L,    KC_SCLN, KC_QUOT,          KC_ENT,  KC_PGUP,    \
   KC_LSFT, KC_Z,    KC_X,   KC_C,   KC_V,   KC_B,   KC_N,   KC_M,   KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,          KC_UP,   KC_PGDN,    \
-  KC_LCTL, KC_LGUI, KC_LALT,                KC_SPC,                          KC_RALT, MO(1),   KC_RCTL, KC_LEFT, KC_DOWN, KC_RGHT),
+  KC_LCTL, KC_LGUI, KC_LALT,                KC_SPC,                          KC_RALT, MO(1),   MO(2),   KC_LEFT, KC_DOWN, KC_RGHT),
 
 
-  /* Keymap Fn Layer
+  /* Keymap Fn 1 Layer
    * ,----------------------------------------------------------------.
    * |~ `|F1 |F2 |F3 |F4 |F5 |F6 |F7 |F8 |F9 |F10|F11|F12|Del    |Ins |
    * |----------------------------------------------------------------|
@@ -57,6 +57,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______,      _______, _______, _______, _______, _______,           _______, KC_HOME, KC_PGUP, KC_LEFT, KC_RGHT,          _______, _______, \
     _______, _______,      _______, BL_DEC,  BL_INC,  BL_TOGG, MAGIC_TOGGLE_NKRO, _______, KC_END,  KC_PGDN, KC_DOWN,          _______, KC_PGUP, _______, \
     _______, MAGIC_NO_GUI, _______,                            _______,                             _______, _______, _______, KC_HOME, KC_PGDN, KC_END),
+
+
+  /* Keymap Fn 2 Layer
+   * ,----------------------------------------------------------------.
+   * |~ `|F1 |F2 |F3 |F4 |F5 |F6 |F7 |F8 |F9 |F10|F11|F12|Del    |Ins |
+   * |----------------------------------------------------------------|
+   * |     |RGB|RGB|RGB|RGB|   |   |   |PSc|SLk|Pau|Up |   |     |    |
+   * |----------------------------------------------------------------|
+   * |      |   |   |   |   |   |   |   |Hom|PUp|Lef|Rig|        |    |
+   * |----------------------------------------------------------------|
+   * |        |   |   | BD| BI| BT|NKRO|   |End|PDn|Dow|      |PUp|   |
+   * |----------------------------------------------------------------|
+   * |    |NOGUI|    |                      |   |   |    |Hom|PDn|End |
+   * `----------------------------------------------------------------'
+   */
+[2] = LAYOUT_65_ansi(
+    KC_GRV,  KC_F1,        KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,             KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______,  KC_INS, \
+    _______, _______,        _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______, _______, \
+    _______, _______,        _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______,          _______, _______, \
+    _______, _______,        _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, KC_PGUP, _______, \
+    _______, MAGIC_UNNO_GUI, _______,                            _______,                             _______, _______, _______, KC_HOME, KC_PGDN, KC_END),
+
 
 };
 
