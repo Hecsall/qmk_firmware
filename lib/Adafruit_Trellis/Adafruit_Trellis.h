@@ -26,7 +26,7 @@
 #if (ARDUINO >= 100)
  #include "Arduino.h"
 #else
- #include "WProgram.h"
+ #include <Arduino.h>
 #endif
 
 #ifdef __AVR_ATtiny85__

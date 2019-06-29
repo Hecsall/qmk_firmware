@@ -1,4 +1,6 @@
 #include "hecsall.h"
+#include <Adafruit_Trellis/Adafruit_Trellis.h>
+
 
 void matrix_init_kb(void) {
 	// put your keyboard start-up code here
