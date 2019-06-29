@@ -14,6 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "rev2.h"
+// #include "Adafruit_Trellis/Adafruit_Trellis.h"
 
 void matrix_init_kb(void) {
 	// put your keyboard start-up code here
