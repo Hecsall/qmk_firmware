@@ -2,6 +2,8 @@
 #define HECSALL_H
 
 #include "quantum.h"
+#include "trellis.h"
+
 
 #define LAYOUT( \
     K00, K01\
