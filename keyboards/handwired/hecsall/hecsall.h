@@ -2,8 +2,10 @@
 #define HECSALL_H
 
 #include "quantum.h"
-#include "trellis.h"
 
+
+// AVRDudes
+// Atmel AppNote AVR911 AVROSP
 
 #define LAYOUT( \
     K00, K01\
