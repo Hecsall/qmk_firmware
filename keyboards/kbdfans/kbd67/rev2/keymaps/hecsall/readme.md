@@ -12,3 +12,7 @@ After the `qmk setup`, probably it will be asked to **clone submodules**, type `
 ```sh
 qmk compile -kb kbdfans/kbd67/rev2 -km hecsall
 ```
+
+## DFU Mode
+To flash the firmware using QMK Toolbox, the keyboard needs to be in DFU Mode.
+To do this, unplug the keyboard, hold the **Esc** key, and while holding it, plug the keyboard back in.
