@@ -1,5 +1,5 @@
 /* Copyright 2022 Basic I/O Instruments (@scottywei)
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 2 of the License, or
@@ -36,7 +36,7 @@
 #define WS2812_BYTE_ORDER WS2812_BYTE_ORDER_RGB
 #define RGBLIGHT_DISABLE_KEYCODES
 #define RGBLIGHT_LAYERS
-#define RGB_DI_PIN C2
+#define WS2812_DI_PIN C2
 #define RGBLED_NUM 10
 #define RGBLIGHT_DEFAULT_SPD 2
 #define RGBLIGHT_HUE_STEP 8
