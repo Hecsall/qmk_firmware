@@ -14,7 +14,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "rev_a.h"
 #include "quantum.h"
 
 const is31_led g_is31_leds[RGB_MATRIX_LED_COUNT] = {
