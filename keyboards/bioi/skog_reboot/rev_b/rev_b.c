@@ -15,7 +15,7 @@
  */
 
 #include "rev_b.h"
-#include "quantum.h"
+#include QMK_KEYBOARD_H
 
 const is31_led g_is31_leds[RGB_MATRIX_LED_COUNT] = {
     // clang-format off

@@ -1,5 +1,5 @@
 /* Copyright 2022 Basic I/O Instruments (@scottywei)
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 2 of the License, or
@@ -25,8 +25,8 @@
 
 #define ENCODER_HALFSTEP
 
-#define ENCODERS_PAD_A { C0 }
-#define ENCODERS_PAD_B { C1 }
+#define ENCODERS_A_PINS { C0 }
+#define ENCODERS_B_PINS { C1 }
 
 #define ENCODER_RESOLUTION  4
 

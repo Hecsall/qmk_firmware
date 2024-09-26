@@ -117,17 +117,11 @@ static void bluefruit_serial_send(uint8_t data) {
 static uint8_t keyboard_leds(void);
 static void    send_keyboard(report_keyboard_t *report);
 static void    send_mouse(report_mouse_t *report);
-
-// host_driver_t struct changed since the VIA_PROTOCOL_VERSION 0x000B
-
-#if VIA_PROTOCOL_VERSION < 0x000B
-static void   send_system(uint16_t data);
-static void   send_consumer(uint16_t data);
-host_driver_t bluefruit_driver = {keyboard_leds, send_keyboard, send_mouse, send_system, send_consumer};
-#elif VIA_PROTOCOL_VERSION >= 0x000B
+// TODO Capire come funziona sta roba che prima non esisteva
+static void    send_nkro(report_nkro_t *report);
 static void   send_extra(report_extra_t *report);
-host_driver_t bluefruit_driver = {keyboard_leds, send_keyboard, send_mouse, send_extra};
-#endif
+
+host_driver_t bluefruit_driver = {keyboard_leds, send_keyboard, send_nkro, send_mouse, send_extra};
 
 host_driver_t null_driver = {};
 
@@ -143,10 +137,10 @@ static void send_keyboard(report_keyboard_t *report) {
     send_str(PSTR("AT+BLEKEYBOARDCODE="));
 
 #ifdef CONSOLE_ENABLE
-    uprint_hex8(report->raw[0]);
+    uprint_hex8(report->mods);
 #endif
 
-    send_bytes(report->raw[0]);
+    send_bytes(report->mods);
 
 #ifdef CONSOLE_ENABLE
     uprintf("-");
@@ -155,21 +149,21 @@ static void send_keyboard(report_keyboard_t *report) {
     send_str(PSTR("-"));
 
 #ifdef CONSOLE_ENABLE
-    uprint_hex8(report->raw[1]);
+    uprint_hex8(0);
 #endif
 
-    send_bytes(report->raw[1]);
+    send_bytes(0);
 
     for (uint8_t i = 2; i < KEYBOARD_EPSIZE; i++) {
-        if (report->raw[i] != 0) {
+        if (report->keys[i] != 0) {
 #ifdef CONSOLE_ENABLE
             uprintf("-");
 #endif
             send_str(PSTR("-"));
 #ifdef CONSOLE_ENABLE
-            uprint_hex8(report->raw[i]);
+            uprint_hex8(report->keys[i]);
 #endif
-            send_bytes(report->raw[i]);
+            send_bytes(report->keys[i]);
         }
     }
 
@@ -201,35 +195,12 @@ static void send_mouse(report_mouse_t *report) {
 #endif
 }
 
-#if VIA_PROTOCOL_VERSION < 0x000B
-
-static void send_extra(uint8_t report_id, uint16_t data) {
-    uprint_hex8(data);
-    uprintf("\r\n");
-    char hexStr[9];
-    sprintf(hexStr, "%04X", data);
-    send_str(PSTR("AT+BLEHIDCONTROLKEY=0x"));
-    for (int j = 0; j < sizeof(hexStr) - 1; j++) {
-        uart1_putc(hexStr[j]);
-    }
-    send_str(PSTR("\r\n"));
-    uprintf("%s \r\n", hexStr);
+// TODO: find something to do
+static void send_nkro(report_nkro_t *report) {
 }
 
-static void send_system(uint16_t data) {
-#    ifdef EXTRAKEY_ENABLE
-    send_extra(REPORT_ID_SYSTEM, data);
-#    endif
-}
 
-static void send_consumer(uint16_t data) {
-#    ifdef EXTRAKEY_ENABLE
-    send_extra(REPORT_ID_SYSTEM, data);
-#    endif
-}
-
-#elif VIA_PROTOCOL_VERSION >= 0x000B
-static void   send_extra(report_extra_t *report) {
+static void send_extra(report_extra_t *report) {
     uprint_hex8(report->usage);
     uprintf("\r\n");
     char hexStr[9];
@@ -241,7 +212,6 @@ static void   send_extra(report_extra_t *report) {
     send_str(PSTR("\r\n"));
     uprintf("%s \r\n", hexStr);
 }
-#endif
 
 void ble_clear_keyboard(void) {
     send_str(PSTR("AT+BLEKEYBOARDCODE=00-00\r\n"));

@@ -24,8 +24,8 @@
 
 #define ENCODER_HALFSTEP
 
-#define ENCODERS_PAD_A { C0 }
-#define ENCODERS_PAD_B { C1 }
+#define ENCODERS_A_PINS { C0 }
+#define ENCODERS_B_PINS { C1 }
 
 #define ENCODER_RESOLUTION  4
 
