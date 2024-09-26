@@ -31,7 +31,7 @@
 
 #include "command.h"
 #include "lufa.h"
-#include "quantum.h"
+#include QMK_KEYBOARD_H
 #include "usb_descriptor.h"
 #include <util/atomic.h>
 

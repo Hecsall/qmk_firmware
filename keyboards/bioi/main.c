@@ -30,7 +30,7 @@
 #include "host.h"
 #include "host_driver.h"
 
-#include "quantum.h"
+#include QMK_KEYBOARD_H
 #include "keyboard.h"
 #include "matrix.h"
 #include "debounce.h"
@@ -183,9 +183,9 @@ uint8_t USB_DeviceLastState = 0;
 #        define ENCODER_COUNTER_CLOCKWISE true
 #    endif
 
-#    define NUMBER_OF_ENCODERS (sizeof(encoders_pad_a) / sizeof(pin_t))
-static pin_t encoders_pad_a[] = ENCODERS_PAD_A;
-static pin_t encoders_pad_b[] = ENCODERS_PAD_B;
+#    define NUMBER_OF_ENCODERS (sizeof(encoders_a_pins) / sizeof(pin_t))
+static pin_t encoders_a_pins[] = ENCODERS_A_PINS;
+static pin_t encoders_b_pins[] = ENCODERS_B_PINS;
 
 #    ifdef SPLIT_KEYBOARD
 // right half encoders come over as second set of encoders
@@ -463,7 +463,7 @@ static void ble_encoder_update(int8_t index, uint8_t state) {
 void ble_encoder_read(void) {
     for (uint8_t i = 0; i < NUMBER_OF_ENCODERS; i++) {
         encoder_state[i] <<= 2;
-        encoder_state[i] |= (readPin(encoders_pad_a[i]) << 0) | (readPin(encoders_pad_b[i]) << 1);
+        encoder_state[i] |= (readPin(encoders_a_pins[i]) << 0) | (readPin(encoders_b_pins[i]) << 1);
         ble_encoder_update(i, encoder_state[i]);
     }
 }
